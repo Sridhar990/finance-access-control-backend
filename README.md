@@ -7,24 +7,15 @@
 
 
 
-## 🔐 FastAPI RBAC Authentication System (Backend API)
+#  Finance Data Processing & Access Control Backend
 ---
 
 ### 📌 Overview
 ---
-Production-ready FastAPI backend implementing a secure Role-Based Access Control (RBAC) authentication system.
+This project is a backend system built using FastAPI that provides secure authentication and role-based access control for financial data processing.
 
-This API supports JWT-based authentication, email OTP verification, role-based authorization, and is deployed on AWS EC2 using Gunicorn and Nginx with HTTPS.
+It simulates a real-world system where users (Admin/User) have controlled access to financial operations such as transactions and summaries.
 
-The project demonstrates:
-
-* Secure authentication flows
-
-* Separation of concerns (modular architecture)
-
-* Environment-based configuration
-
-* Production deployment setup
 
 
 
@@ -40,6 +31,10 @@ The project demonstrates:
 
 * Token validation & protected routes
 
+* Financial Transaction Management
+
+* Financial Summary APIs
+
 #### 👥 Authorization (RBAC)
 
 * Role-based access (Admin / User)
@@ -49,6 +44,10 @@ The project demonstrates:
 * Secure dependency-based authorization
 
 #### 🔐 Account Management
+
+* View personal financial data
+
+* Perform transactions
 
 * Password Reset Flow
 
@@ -60,7 +59,9 @@ The project demonstrates:
 
 * Admin User Management
 
-* Admin Job Management
+* Access all financial data
+
+* View system-wide summaries
 
 * Role assignment control
 
@@ -89,16 +90,11 @@ The project demonstrates:
 
 * Passlib (bcrypt) – Secure password hashing
 
-* Gunicorn – Production ASGI server
-
-* Nginx – Reverse proxy
-
-* AWS EC2 – Cloud deployment
 
 ### 📂 Project Structure
 ---
 ```
-fastapi-rbac-auth-api/
+finance-access-control-backned/
 
 ├── app/
 
@@ -194,27 +190,43 @@ http://127.0.0.1:8000
 ```
 http://127.0.0.1:8000/docs
 ```
-### 🚀 Production Deployment
----
-This backend is deployed on AWS EC2 with the following setup:
+### 📬 API Endpoints
 
-* Gunicorn (ASGI server)
+## 🔐Authentication
 
-* Nginx (reverse proxy)
+* POST /auth/register
+* POST /auth/verify-email
+* POST /auth/login
+* POST /auth/forgot-password
+* POST /auth/reset-password
 
-* HTTPS (SSL certificate)
+## 👤 User APIs
 
-* systemd service for process management
+* GET /users/me
+* PATCH /users/update_profile
+* PATCH /users/password_change
 
-* Production start command:
+## 🛡️Admin APIs
+* GET /admin/users
+* PATCH /admin/users/{user_id}/disable
+* PATCH /admin/users/{user_id}/enable
+* DELETE /admin/users/{user_id}
 
-* gunicorn app.main:app -k uvicorn.workers.UvicornWorker
+## 💰 Financial Summary
+* GET /summary/income
+* GET /summary/expense
+* GET /summary/balance
 
+## 💳 Transactions
 
-Nginx routes external HTTPS traffic to the internal Gunicorn server running on port 8000.
+* GET /transactions/
+* POST /transactions/
+* DELETE /transactions/{tx_id}
 
+### 📌 Submission Note
 
-### 🔗 Related Repository
----
-#### Frontend UI:
-👉 [Sreamlit RBAC frontend](https://github.com/Sridhar990/rbac-auth-streamlit-ui)
+I attempted to submit this assignment via the provided portal before the deadline.
+
+Due to technical issues with the platform/email domain, I am sharing my complete solution via this repository.
+
+## Reference ID: TEBYL6XD
